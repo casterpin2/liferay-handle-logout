@@ -1,0 +1,4 @@
+Bundle-Name: oauth2-revoke
+Bundle-SymbolicName: com.example.oauth2.revoke
+Bundle-Version: 1.0.0
+Liferay-Configuration-Path: /configuration

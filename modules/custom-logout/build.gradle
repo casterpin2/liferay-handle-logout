@@ -1,0 +1,14 @@
+apply plugin: 'java'
+
+dependencies {
+	implementation (group: "com.liferay.portal", name: "release.portal.api")
+	implementation ("com.liferay.portal:release.portal.api:7.4.3.132")
+	implementation ("com.liferay:com.liferay.oauth2.provider.api:17.0.0")
+	implementation ("com.liferay.portal:release.portal.api:7.4.3-ga132")
+	implementation ("com.liferay:com.liferay.oauth2.provider.service:4.0.99")
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "7.4.0"
+	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.4.0"
+	// https://mvnrepository.com/artifact/com.liferay/com.liferay.oauth2.provider.service
+	implementation("com.liferay:com.liferay.oauth2.provider.service:4.0.99")
+    // Add other dependencies as needed
+}

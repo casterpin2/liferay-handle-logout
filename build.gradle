@@ -1,0 +1,23 @@
+// Root build.gradle for multi-project Liferay workspace
+
+allprojects {
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://repository-cdn.liferay.com/nexus/content/groups/public"
+        }
+    }
+}
+
+subprojects {
+    // Common configurations for all subprojects
+    afterEvaluate { project ->
+        // Apply specific configurations based on project type if needed
+        if (project.path.startsWith(':modules')) {
+            // Common configuration for modules
+        }
+    }
+}
+
+// Root project specific configurations
+// Check GETTING_STARTED.markdown for information regarding usage.

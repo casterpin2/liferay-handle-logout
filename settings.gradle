@@ -1,0 +1,22 @@
+buildscript {
+	dependencies {
+		classpath group: "com.liferay", name: "com.liferay.gradle.plugins.workspace", version: "12.1.11"
+	}
+
+	repositories {
+		mavenLocal()
+
+		maven {
+			url "https://repository-cdn.liferay.com/nexus/content/groups/public"
+		}
+	}
+}
+
+apply plugin: "com.liferay.workspace"
+
+// Define the root project name
+rootProject.name = 'liferay-handle-logout'
+
+// Include subprojects
+include ':modules:custom-logout'
+include ':modules:oauth2-revoke'
