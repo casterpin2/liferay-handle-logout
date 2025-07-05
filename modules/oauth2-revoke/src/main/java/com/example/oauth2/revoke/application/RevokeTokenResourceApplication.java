@@ -53,7 +53,6 @@ public class RevokeTokenResourceApplication extends Application {
 			if (authHeader == null || !authHeader.startsWith("Bearer ")) {
 				return Response
 						.status(Response.Status.UNAUTHORIZED)
-						.entity(Collections.singletonMap("error", "missing_or_invalid_authorization_header"))
 						.build();
 			}
 
@@ -66,19 +65,17 @@ public class RevokeTokenResourceApplication extends Application {
 			if (auth == null) {
 				return Response
 						.status(Response.Status.BAD_REQUEST)
-						.entity(Collections.singletonMap("error", "invalid_token"))
 						.build();
 			}
-            _oAuth2AuthorizationService.revokeOAuth2Authorization(
-                    auth.getOAuth2AuthorizationId()
-            );
-			CacheRegistryUtil.clear();
+			OAuth2Authorization authDeleted = OAuth2AuthorizationLocalServiceUtil.deleteOAuth2Authorization(auth);
+			System.out.println("Clear All token (cahe) - DB: " + authDeleted.getUserName() +" - " + authDeleted.getUserId());
 
-        } catch (PortalException e) {
-            throw new RuntimeException(e);
+
+        } catch (Exception e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
 
-        return Response.status(Response.Status.OK).entity(Collections.singletonMap("success", "Logout successfully")).build();
+        return Response.status(Response.Status.OK).build();
 	}
 
 }
